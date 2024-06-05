@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: podinfo
     server: https://kubernetes.default.svc
-  project: swisspost-addons
+  project: default
   source:
     path: podinfo-helm/
     repoURL: https://github.com/the-technat/argocd-testing.git
