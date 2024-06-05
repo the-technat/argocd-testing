@@ -1,0 +1,29 @@
+networkPolicy:
+  enabled: true
+
+podinfo:
+  replicaCount: 3
+
+  ui:
+    color: "#0DADEA"
+    message: "Argo CD Testing"
+    logo: "https://github.com/argoproj/argo-cd/blob/8a28279921dd70cba0f27245b049ecc51925cf56/ui/src/assets/images/argo.png?raw=true"
+
+  podDisruptionBudget:
+    maxUnavailable: 1
+
+  faults:
+    delay: false
+    error: false
+    unhealthy: false
+    unready: false
+    testFail: false
+    testTimeout: false
+
+  service:
+    annotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "9797"
+
+  securityContext:
+    runAsUser: 1000

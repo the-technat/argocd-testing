@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: podinfo
+  namespace: argocd
+spec:
+  destination:
+    namespace: podinfo
+    server: https://kubernetes.default.svc
+  project: swisspost-addons
+  source:
+    path: podinfo-helm/
+    repoURL: https://github.com/the-technat/argocd-testing.git
+    targetRevision: develop
+    helm:
+      valueFiles:
+        - values.yaml
+      values: |
+        podinfo:
+          service:
+            type: LoadBalancer
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
+    syncOptions:
+      - ApplyOutOfSyncOnly=true
+      - CreateNamespace=true

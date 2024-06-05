@@ -1,0 +1,9 @@
+apiVersion: v2
+name: podinfo
+description: Wrapper chart for podinfo
+type: application
+version: 0.0.0
+dependencies:
+  - name: podinfo
+    version: 6.6.3
+    repository: https://stefanprodan.github.io/podinfo

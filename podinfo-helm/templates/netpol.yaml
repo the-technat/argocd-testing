@@ -1,0 +1,16 @@
+{{- if .Values.networkPolicy.enabled }}
+{{- $context := dict "Chart" .Chart "Release" .Release "Values" .Values }}
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-ingress-to-ui
+spec:
+  podSelector:
+    matchLabels:
+      {{- include "podinfo.selectorLabels" $context | nindent 6 }}
+  ingress:
+  - ports:
+    - port: 9898
+  policyTypes:
+  - Ingress
+{{- end }}%
